@@ -15,72 +15,45 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>CS 4342 User Login</title>
+  <title>CS 4342 Team 7</title>
 
   <!-- Bootstrap CSS library https://getbootstrap.com/ -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 
+  <style>
+    .buttons-area {
+      background-color: #041E42;
+      color: white;
+    }
+  </style>
 </head>
 
 <body>
   <div style="margin-top: 20px" class="container">
-    
-    <h1>User Login</h1>
-    <form action="index.php" method="post">
-      <div class="form-group">
-        <label for="username">User Name</label>
-        <input class="form-control" type="text" id="username" name="username">
+    <h1>CS Department Advising</h1>
+    <div class="buttons-area">
+      <br>
+      <h2 align="center"> Welcome to the UTEP CS Department</h2>
+      <br>
+      <div class="row">
+        <div class="col-lg-6 col-md-3 col-sm-6 col-xs-12" align="right">
+          <a href="admin/admin_login.php"><button class="btn btn-warning btn-lg">Administrator Login</button></a><br><br>
+        </div>
+        <div class="col-lg-6 col-md-3 col-sm-6 col-xs-12">
+          <a href="advisor/advisor_login.php"><button class="btn btn-warning btn-lg">Advisor Login</button></a><br><br>
+        </div>
       </div>
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input class="form-control" type="password" id="password" name="password">
+      <div class="row">
+        <div class="col-lg-6 col-md-3 col-sm-6 col-xs-12" align="right">
+          <a href="student/student_input.php"><button class="btn btn-warning btn-lg">Student Form</button></a><br><br>
+        </div>
       </div>
-      <div class="form-group">
-        <input class="btn btn-primary" name='Submit' type="submit" value="Submit">
-      </div>
-    </form>
-    <a href="create_user.php">Don't have an account? Create one now!</a><br><br>
-    
+    </div>
   </div>
 
   <!-- jQuery and JS bundle w/ Popper.js -->
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
-
-
 </body>
 
 </html>
-
-
-<?php
-
-session_start();
-require_once("config.php");
-$_SESSION['logged_in'] = false;
-
-if (!empty($_POST)) {
-  if (isset($_POST['Submit'])) {
-    $input_username = isset($_POST['username']) ? $_POST['username'] : " ";
-    $input_password = isset($_POST['password']) ? $_POST['password'] : " ";
-
-    $queryUser = "SELECT * FROM User  WHERE Uusername='" . $input_username . "' AND UPassword='" . $input_password . "';";
-    $resultUser = $conn->query($queryUser);
-
-    if ($resultUser->num_rows > 0) {
-      //if there is a result, that means that the user was found in the database
-      $_SESSION['user'] = $input_username;
-      $_SESSION['logged_in'] = true;
-      
-      echo "Session logged_in is: ".$_SESSION['logged_in'];
-      
-      // You can comment the next line (header) to check if the user was successfully logged in. 
-      // But it will not redirect to the student_menu file automatically.
-      header("Location: studentsCode/student_menu.php");
-    } else {
-      echo "User not found.";
-    }
-    die();
-  }
-}
-?>
