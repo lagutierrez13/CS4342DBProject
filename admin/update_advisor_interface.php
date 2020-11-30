@@ -18,7 +18,7 @@ require_once('../validate_session.php');
 
 if (isset($_GET['Eid'])) {
     $eid = $_GET['Eid'];
-    $sql = "SELECT * FROM administrator where Eid = $eid";
+    $sql = "SELECT * FROM employee where Eid = $eid";
     $result = $conn->query($sql);
     $row = mysqli_fetch_array($result);
 }

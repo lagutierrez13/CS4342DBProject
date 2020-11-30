@@ -18,7 +18,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>CS4342 Create User Account</title>
+    <title>CS4342 Student Form</title>
 
     <!-- Importing Bootstrap CSS library https://getbootstrap.com/ -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
@@ -80,6 +80,7 @@
             <div class="form-group">
                 <input class="btn btn-primary" name='Submit' type="submit" value="Submit">
             </div>
+            <br><a href="">Back to Main Page</a><br>
         </form>
 
         <!-- jQuery and JS bundle w/ Popper.js -->
@@ -88,7 +89,7 @@
 
         <!-- PhP code starts here -->
     <?php
-        require_once('config.php');
+        require_once('../config.php');
 
         if (isset($_POST['Submit'])){
 

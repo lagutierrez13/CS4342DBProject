@@ -11,72 +11,73 @@
 
 <!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>CS 4342 User Login</title>
+    <title>CS 4342 Advisor Login</title>
 
     <!-- Bootstrap CSS library https://getbootstrap.com/ -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-
-    <style>
-    .buttons-area {
-      background-color: #041E42;
-      color: white;
-    }
-  </style>
 </head>
 
 <body>
     <div style="margin-top: 20px" class="container">
         <h1>Advisor Login</h1>
-        <form action="index.php" method="post">
+        <form action="advisor_login.php" method="post">
             <div class="form-group">
                 <label for="username">Miners email</label>
-                <input class="form-control" type="text" id="username" name="username">
+                <input class="form-control" type="text" id="username" name="email">
             </div>
             <div class="form-group">
                 <label for="username">Password</label>
-                <input class="form-control" type="password" id="username" name="username">
+                <input class="form-control" type="password" id="username" name="password">
             </div>
             <div class="form-group">
-                <input class="btn btn-warning" name='Submit' type="submit" value="Submit">
+                <input class="btn btn-warning" name='Submit' type="submit" value="Login">
             </div>
         </form>
-
     </div>
 
     <!-- jQuery and JS bundle w/ Popper.js -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 </body>
+
 </html>
 
 <?php
 session_start();
 require_once("../config.php");
 $_SESSION['logged_in'] = false;
+$_SESSION['active_user'] = "";
 
 if (!empty($_POST)) {
     if (isset($_POST['Submit'])) {
         $input_email = isset($_POST['email']) ? $_POST['email'] : " ";
         $input_password = isset($_POST['password']) ? $_POST['password'] : " ";
 
-        $queryAdvisor = "SELECT * FROM Advisor  WHERE Eemail='" . $input_email . "' AND Epassword='" . $input_password . "';";
+        $queryAdvisor = "SELECT * FROM employee INNER JOIN advisor ON employee.eid = advisor.eid WHERE employee.eemail='" . $input_email . "' AND employee.epassword='" . $input_password . "';";
         $resultAdvisor = $conn->query($queryAdvisor);
+        
+        echo "Email: " . $input_email;
+        echo "Password: " . $input_password;
 
         if ($resultAdvisor->num_rows > 0) {
-            //if there is a result, that means that the user was found in the database
+            $row = $resultAdvisor->fetch_row();
+            //if there is a result, that means that the admin was found in the database
             $_SESSION['employee'] = $input_email;
             $_SESSION['logged_in'] = true;
+            $_SESSION['active_user'] = $row[0];
 
             echo "Session logged_in is: " . $_SESSION['logged_in'];
+            echo "User logged in is: " . $_SESSION['active_user'];
 
             // You can comment the next line (header) to check if the user was successfully logged in. 
             // But it will not redirect to the student_menu file automatically.
-            header("Location: advisor_login.php");
+            header("Location: advisor_menu.php");
         } else {
-            echo "User not found.";
+            echo "User not found. Or not an advisor";
         }
         die();
     }

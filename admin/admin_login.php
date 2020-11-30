@@ -15,7 +15,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>CS 4342 User Login</title>
+    <title>CS 4342 Administrator Login</title>
 
     <!-- Bootstrap CSS library https://getbootstrap.com/ -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
@@ -56,10 +56,10 @@ if (!empty($_POST)) {
     if (isset($_POST['Submit'])) {
         $input_email = isset($_POST['email']) ? $_POST['email'] : " ";
         $input_password = isset($_POST['password']) ? $_POST['password'] : " ";
-
-        $queryAdmin = "SELECT * FROM administrator  WHERE Eemail='" . $input_email . "' AND Epassword='" . $input_password . "';";
-        $resultAdmin = $conn->query($queryAdmin);
         
+        $queryAdmin = "SELECT * FROM employee INNER JOIN administrator ON employee.eid = administrator.eid WHERE employee.eemail='" . $input_email . "' AND employee.epassword='" . $input_password . "';";
+        $resultAdmin = $conn->query($queryAdmin);
+
         echo "Email: " . $input_email;
         echo "Password: " . $input_password;
 
@@ -70,7 +70,6 @@ if (!empty($_POST)) {
             $_SESSION['logged_in'] = true;
             $_SESSION['active_user'] = $row[0];
 
-
             echo "Session logged_in is: " . $_SESSION['logged_in'];
             echo "User logged in is: " . $_SESSION['active_user'];
 
@@ -78,7 +77,7 @@ if (!empty($_POST)) {
             // But it will not redirect to the student_menu file automatically.
             header("Location: admin_menu.php");
         } else {
-            echo "User not found.";
+            echo "User not found. Or not an administrator";
         }
         die();
     }

@@ -14,7 +14,7 @@
 <?php
 
 $host = "ilinkserver.cs.utep.edu"; #enter the DB server location
-$db = "lagutierrez13_db";   # 1. Enter your team database here for your group project.
+$db = "f20am_team7";   # 1. Enter your team database here for your group project.
             # OR 2. Enter your individual database here to complete this exercise.
 
 $username = "lagutierrez13";  # If 1 above (for your group project), enter the username of the interface or reports lead.

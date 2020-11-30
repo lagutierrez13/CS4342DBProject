@@ -32,7 +32,7 @@ require_once('../validate_session.php');
 </head>
 
 <body>
-    <?php $sql = "SELECT * FROM administrator";
+    <?php $sql = "SELECT * FROM employee INNER JOIN advisor ON employee.eid = advisor.eid";
     if ($result = $conn->query($sql)) {
     ?>
         <table class="table" width=50%>
@@ -51,7 +51,6 @@ require_once('../validate_session.php');
                         <td><?php printf("%s", $row[2]); ?></td>
                         <td><a href="update_advisor_interface.php?Eid=<?php echo $row[0] ?>">Update</a></td>
                         <td><a href="delete_advisor.php?Eid=<?php echo $row[0] ?>">Delete</a></td>
-                        <td><a href="delete_student.php?Eid=<?php echo $row[0] ?>">Open Time Slots</a></td>
                     </tr>
                 <?php
                 }

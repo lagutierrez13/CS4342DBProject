@@ -20,7 +20,7 @@ require_once('../validate_session.php');
 if (isset($_GET['Eid'])) {
 
     $userid = $_GET['Eid'];
-    $query = "DELETE from administrator where Eid = $userid";
+    $query = "DELETE from employee where Eid = $userid";
 
     if ($conn->query($query) === TRUE) {
         echo "Advisor deleted successfuly";
