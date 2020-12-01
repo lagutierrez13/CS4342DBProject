@@ -29,6 +29,7 @@
 
         <a href="manage_accounts.php">Modify, Create, Delete Department Accounts</a><br>
         <a href="view_advisors.php">View Students and Advisors</a><br>
+        <a href="reports_menu.php">Reports</a><br>
         <br><a href="index.php">LOG OUT</a><br>
 
     </div>

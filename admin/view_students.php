@@ -48,6 +48,7 @@ else {
                 <td> ID</td>
                 <td> Name</td>
                 <td> Email</td>
+                <td> Advisor ID</td>
             </thead>
             <tbody>
                 <?php
@@ -57,6 +58,8 @@ else {
                         <td><?php printf("%s", $row[0]); ?></td>
                         <td><?php printf("%s", $row[2]); ?></td>
                         <td><?php printf("%s", $row[1]); ?></td>
+                        <td><?php printf("%s", $row[5]); ?></td>
+                        <td><a href="change_advisor_interface.php?Sid=<?php echo $row[0] ?>">Change Advisor</a></td>
                     </tr>
                 <?php
                 }
