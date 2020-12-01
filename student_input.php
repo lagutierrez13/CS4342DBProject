@@ -80,7 +80,7 @@
             <div class="form-group">
                 <input class="btn btn-primary" name='Submit' type="submit" value="Submit">
             </div>
-            <br><a href="">Back to Main Page</a><br>
+            <br><a href="index.php">Back to Main Page</a><br>
         </form>
 
         <!-- jQuery and JS bundle w/ Popper.js -->
@@ -89,7 +89,7 @@
 
         <!-- PhP code starts here -->
     <?php
-        require_once('../config.php');
+        require_once('config.php');
 
         if (isset($_POST['Submit'])){
 

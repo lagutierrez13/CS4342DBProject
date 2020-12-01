@@ -45,7 +45,7 @@
       </div>
       <div class="row">
         <div class="col-lg-6 col-md-3 col-sm-6 col-xs-12" align="right">
-          <a href="student/student_input.php"><button class="btn btn-warning btn-lg">Student Form</button></a><br><br>
+          <a href="student_input.php"><button class="btn btn-warning btn-lg">Student Form</button></a><br><br>
         </div>
       </div>
     </div>

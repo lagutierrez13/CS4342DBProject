@@ -28,6 +28,7 @@
         <h1>Advisor Menu: </h1>
 
         <a href="edit_advisor_availability.php">Edit availability</a><br>
+        <a href="sessions.php">Advising Sessions</a><br>
         <a href="input_student_classes.php">Input student classes</a><br>
         <a href="add_session_comments.php">Add comments</a><br>
 

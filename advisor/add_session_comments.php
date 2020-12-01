@@ -13,7 +13,7 @@
 
 -->
 <?php
-  require_once('config.php');
+  require_once('../config.php');
 
   session_start();
   $advisorID = $_SESSION['active_user'];
@@ -35,7 +35,7 @@
     <div style="margin-top: 20px" class="container">
         <h1>Add Advising Session Comments</h1>
         <!-- styling of the form for bootstrap https://getbootstrap.com/docs/4.5/components/forms/ -->
-        <form action="student_input.php" method="post">
+        <form action="add_session_comments.php" method="post">
 
             <div class="form-group">
                 <label for="studentID">Student ID:</label>
@@ -64,6 +64,7 @@
             <div class="form-group">
                 <input class="btn btn-primary" name='Submit' type="submit" value="Submit">
             </div>
+            <a href="advisor_menu.php">Back to Advisor Menu</a></br>
         </form>
 
         <!-- jQuery and JS bundle w/ Popper.js -->
@@ -78,71 +79,71 @@
      * Grab information from the form submission and store values into variables.
      */
     $sudentID = isset($_POST['studentID']) ? $_POST['studentID'] : " ";
-    $comment1 = isset($_POST['comment1']) ? $_POST['comment1'] : " ";
-    $comment2 = isset($_POST['comment2']) ? $_POST['comment2'] : " ";
-    $comment3 = isset($_POST['comment3']) ? $_POST['comment3'] : " ";
-    $comment4 = isset($_POST['comment4']) ? $_POST['comment4'] : " ";
-    $comment5 = isset($_POST['comment5']) ? $_POST['comment5'] : " ";
-    $comment6 = isset($_POST['comment6']) ? $_POST['comment6'] : " ";
+    $comment1 = isset($_POST['comment1']) ? $_POST['comment1'] : ' ';
+    $comment2 = isset($_POST['comment2']) ? $_POST['comment2'] : ' ';
+    $comment3 = isset($_POST['comment3']) ? $_POST['comment3'] : ' ';
+    $comment4 = isset($_POST['comment4']) ? $_POST['comment4'] : ' ';
+    $comment5 = isset($_POST['comment5']) ? $_POST['comment5'] : ' ';
+    $comment6 = isset($_POST['comment6']) ? $_POST['comment6'] : ' ';
 
     //Insert into Student table;
     $queryComment;
-    if($class1 !== ' '){
+    if($comment1 !== ''){
       $queryComment  = "INSERT INTO Comments (Eid, Sid, Ccomment)
                   VALUES ('".$advisorID."', '".$sudentID."', '".$comment1."');";
       if ($conn->query($queryComment) === TRUE) {
-          echo "Successfully added class 1";
+          echo "Successfully added comment 1<br>";
       } else {
           echo "Error: " . $queryUser . "<br>" . $conn->error;
       }
     }
-    if($class2 !== ' '){
+    if($comment2 !== ''){
       $queryComment  = "INSERT INTO Comments (Eid, Sid, Ccomment)
                   VALUES ('".$advisorID."', '".$sudentID."', '".$comment2."');";
       if ($conn->query($queryComment) === TRUE) {
-          echo "Successfully added class 2";
+          echo "Successfully added comment 2<br>";
       } else {
           echo "Error: " . $queryUser . "<br>" . $conn->error;
       }
     }
-    if($class3 !== ' '){
+    if($comment3 !== ''){
       $queryComment  = "INSERT INTO Comments (Eid, Sid, Ccomment)
                   VALUES ('".$advisorID."', '".$sudentID."', '".$comment3."');";
       if ($conn->query($queryComment) === TRUE) {
-          echo "Successfully added class 3";
+          echo "Successfully added comment 3<br>";
       } else {
           echo "Error: " . $queryUser . "<br>" . $conn->error;
       }
     }
-    if($class4 !== ' '){
+    if($comment4 !== ''){
       $queryComment  = "INSERT INTO Comments (Eid, Sid, Ccomment)
                   VALUES ('".$advisorID."', '".$sudentID."', '".$comment4."');";
       if ($conn->query($queryComment) === TRUE) {
-          echo "Successfully added class 4";
+          echo "Successfully added comment 4<br>";
       } else {
           echo "Error: " . $queryUser . "<br>" . $conn->error;
       }
     }
-    if($class5 !== ' '){
+    if($comment5 !== ''){
       $queryComment  = "INSERT INTO Comments (Eid, Sid, Ccomment)
                   VALUES ('".$advisorID."', '".$sudentID."', '".$comment5."');";
       if ($conn->query($queryComment) === TRUE) {
-          echo "Successfully added class 5";
+          echo "Successfully added comment 5<br>";
       } else {
           echo "Error: " . $queryUser . "<br>" . $conn->error;
       }
     }
-    if($class6 !== ' '){
+    if($comment6 !== ''){
       $queryComment  = "INSERT INTO Comments (Eid, Sid, Ccomment)
                   VALUES ('".$advisorID."', '".$sudentID."', '".$comment6."');";
       if ($conn->query($queryComment) === TRUE) {
-          echo "Successfully added class 6";
+          echo "Successfully added comment 6<br>";
       } else {
           echo "Error: " . $queryUser . "<br>" . $conn->error;
       }
     }
     // If you want to redirect without seeing messages printed, uncomment the following line:
-    //header("Location: index.php");
+    header("Location: advisor_menu.php");
 }
 ?>
 

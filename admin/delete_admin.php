@@ -17,24 +17,12 @@ session_start();
 require_once('../config.php');
 require_once('../validate_session.php');
 
-function deleteAdvisor(int $id, mysqli $conn){
+function deleteAdmin(int $id, PDO $conn){
     try{
-        $sql = 'CALL DeleteAdvisor(:id)';
+        $sql = 'CALL DeleteAdmin()';
+        $q = $conn->query($sql);
+        //$q->setFetchMode(PDO::FETCH_ASSOC);
 
-        $stmt = $conn->prepare($sql);
-
-        $stmt->bind_param(':id', $id);
-
-        $stmt->execute();
-
-        $stmt->close();
-        
-        // if($conn->query($sql) == TRUE){
-        //     echo "Advisor deleted successfuly";
-        //     header("Location: manage_accounts.php");
-        // }else{
-        //     echo "Error: " . $sql . "<br>" . $conn->error;
-        // }
     }catch(PDOException $e){
         echo "Error: " . $e->getMessage();
     }
@@ -43,14 +31,15 @@ function deleteAdvisor(int $id, mysqli $conn){
 if (isset($_GET['Eid'])) {
 
     $userid = $_GET['Eid'];
-    $query = "DELETE from employee where Eid = $userid";    
-    $query2 = "DELETE from advisor where Eid = $userid";
 
-    //deleteAdvisor($userid, $conn);
+    $query = "DELETE from employee where Eid = $userid"; 
+    $query2 = "DELETE from administrator where Eid = $userid";   
+
+    //deleteAdmin($userid, $conn);
 
     if ($conn->query($query2) === TRUE) {
-        if($conn->query($query) == TRUE){
-            echo "Advisor deleted successfuly";
+        if($conn->query($query) === TRUE){
+            echo "Administrator deleted successfuly";
             header("Location: manage_accounts.php");
         }else{
             echo "Error: " . $query . "<br>" . $conn->error;

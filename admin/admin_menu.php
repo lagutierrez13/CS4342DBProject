@@ -27,8 +27,8 @@
     <div class="container">
         <h1>Administrators Menu: </h1>
 
-        <a href="manage_accounts.php">Manage Department Accounts</a><br>
-        <a href="view_students.php">View Students and Advisors</a><br>
+        <a href="manage_accounts.php">Modify, Create, Delete Department Accounts</a><br>
+        <a href="view_advisors.php">View Students and Advisors</a><br>
 
     </div>
 

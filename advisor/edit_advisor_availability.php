@@ -19,14 +19,12 @@ session_start();
 $advisorID = $_SESSION['active_user'];
 
 $sql = "SELECT Aavailability FROM Advisor_Availability WHERE Eid='" . $advisorID . "';";
-if ($conn->query($sql) === TRUE) {
-  echo "Succesfully checked";
+$resultSql = $conn->query($sql);
+if ($resultSql->num_rows > 0) {
+  $sql2 = "DELETE FROM Advisor_Availability WHERE Eid='".$advisorID."'";
   if ($conn->query($sql2) === TRUE) {
-    echo "Succesfully deleted";
+    
   }
-} else {
-  //echo "Error: " . $queryUser . "<br>" . $conn->error;
-  echo "Error: " . $advisorID;
 }
 ?>
 
@@ -46,7 +44,7 @@ if ($conn->query($sql) === TRUE) {
   <div style="margin-top: 20px" class="container">
     <h1>Set availability</h1>
     <!-- styling of the form for bootstrap https://getbootstrap.com/docs/4.5/components/forms/ -->
-    <form action="student_input.php" method="post">
+    <form action="edit_advisor_availability.php" method="post">
       <label>Select the <strong>timeslots</strong> you are <strong>available</strong></label>
       <div class="form-group row">
         <div class="col-md-4">
@@ -77,6 +75,7 @@ if ($conn->query($sql) === TRUE) {
       <div class="form-group">
         <input class="btn btn-primary" name='Submit' type="submit" value="Submit">
       </div>
+      <a href="advisor_menu.php">Back to Advisor Menu</a></br>
     </form>
 
     <!-- jQuery and JS bundle w/ Popper.js -->

@@ -12,13 +12,20 @@
 
 
 <?php
-/*
-* Reference for tables: https://getbootstrap.com/docs/4.5/content/tables/
-*/
-
 session_start();
 require_once('../config.php');
 require_once('../validate_session.php');
+
+if (isset($_GET['Eid'])) {
+    $eid = $_GET['Eid'];
+    // $sql = "SELECT * FROM student where Eid = $eid";
+    // $result = $conn->query($sql);
+    // $row = mysqli_fetch_array($result);
+}
+else {
+    echo "No advisor id received on request at update_advisor get";
+    die();
+}
 ?>
 
 <html>
@@ -32,8 +39,8 @@ require_once('../validate_session.php');
 </head>
 
 <body>
-    <h2>Advisors</h2>
-    <?php $sql = "SELECT * FROM employee INNER JOIN advisor ON employee.eid = advisor.eid";
+    <h2>Students</h2>
+    <?php $sql = "SELECT * FROM student WHERE Eid = $eid";
     if ($result = $conn->query($sql)) {
     ?>
         <table class="table" width=50%>
@@ -48,10 +55,8 @@ require_once('../validate_session.php');
                 ?>
                     <tr>
                         <td><?php printf("%s", $row[0]); ?></td>
-                        <td><?php printf("%s", $row[1]); ?></td>
                         <td><?php printf("%s", $row[2]); ?></td>
-                        <td><a href="update_advisor_interface.php?Eid=<?php echo $row[0] ?>">Update</a></td>
-                        <td><a href="delete_advisor.php?Eid=<?php echo $row[0] ?>">Delete</a></td>
+                        <td><?php printf("%s", $row[1]); ?></td>
                     </tr>
                 <?php
                 }
@@ -61,42 +66,7 @@ require_once('../validate_session.php');
     <?php
     }
     ?>
-    <!-- Link to create advisor account-->
-    <a href="create_advisor.php">Create New Advisor Account</a><br>
-
-    <h2>Administrators</h2>
-    <?php $sql = "SELECT * FROM employee INNER JOIN administrator ON employee.eid = administrator.eid";
-    if ($result = $conn->query($sql)) {
-    ?>
-        <table class="table" width=50%>
-            <thead>
-                <td> ID</td>
-                <td> Name</td>
-                <td> Email</td>
-            </thead>
-            <tbody>
-                <?php
-                while ($row = $result->fetch_row()) {
-                ?>
-                    <tr>
-                        <td><?php printf("%s", $row[0]); ?></td>
-                        <td><?php printf("%s", $row[1]); ?></td>
-                        <td><?php printf("%s", $row[2]); ?></td>
-                        <td><a href="update_admin_interface.php?Eid=<?php echo $row[0] ?>">Update</a></td>
-                        <td><a href="delete_admin.php?Eid=<?php echo $row[0] ?>">Delete</a></td>
-                    </tr>
-                <?php
-                }
-                ?>
-            </tbody>
-        </table>
-    <?php
-    }
-    ?>
-    <!-- Link to create advisor account-->
-    <a href="create_admin.php">Create New Administrator Account</a><br>
-    <!-- Link to return to student_menu-->
-    <a href="admin_menu.php">Back to Administrator Menu</a><br>
+    <a href="view_advisors.php">Back to Advisors</a></br>
     <!-- jQuery and JS bundle w/ Popper.js -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>

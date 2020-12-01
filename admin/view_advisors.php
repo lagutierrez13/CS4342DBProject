@@ -50,8 +50,9 @@ require_once('../validate_session.php');
                         <td><?php printf("%s", $row[0]); ?></td>
                         <td><?php printf("%s", $row[1]); ?></td>
                         <td><?php printf("%s", $row[2]); ?></td>
-                        <td><a href="update_advisor_interface.php?Eid=<?php echo $row[0] ?>">Update</a></td>
-                        <td><a href="delete_advisor.php?Eid=<?php echo $row[0] ?>">Delete</a></td>
+                        <td><a href="view_students.php?Eid=<?php echo $row[0] ?>">View Students</a></td>
+                        <td><a href="open_time_slots.php?Eid=<?php echo $row[0] ?>">Open Time Slots</a></td>
+                        <td><a href="advising_sessions.php?Eid=<?php echo $row[0] ?>">Advising Sessions</a></td>
                     </tr>
                 <?php
                 }
@@ -61,42 +62,7 @@ require_once('../validate_session.php');
     <?php
     }
     ?>
-    <!-- Link to create advisor account-->
-    <a href="create_advisor.php">Create New Advisor Account</a><br>
-
-    <h2>Administrators</h2>
-    <?php $sql = "SELECT * FROM employee INNER JOIN administrator ON employee.eid = administrator.eid";
-    if ($result = $conn->query($sql)) {
-    ?>
-        <table class="table" width=50%>
-            <thead>
-                <td> ID</td>
-                <td> Name</td>
-                <td> Email</td>
-            </thead>
-            <tbody>
-                <?php
-                while ($row = $result->fetch_row()) {
-                ?>
-                    <tr>
-                        <td><?php printf("%s", $row[0]); ?></td>
-                        <td><?php printf("%s", $row[1]); ?></td>
-                        <td><?php printf("%s", $row[2]); ?></td>
-                        <td><a href="update_admin_interface.php?Eid=<?php echo $row[0] ?>">Update</a></td>
-                        <td><a href="delete_admin.php?Eid=<?php echo $row[0] ?>">Delete</a></td>
-                    </tr>
-                <?php
-                }
-                ?>
-            </tbody>
-        </table>
-    <?php
-    }
-    ?>
-    <!-- Link to create advisor account-->
-    <a href="create_admin.php">Create New Administrator Account</a><br>
-    <!-- Link to return to student_menu-->
-    <a href="admin_menu.php">Back to Administrator Menu</a><br>
+    <a href="admin_menu.php">Back to Administrator Menu</a></br>
     <!-- jQuery and JS bundle w/ Popper.js -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>

@@ -13,7 +13,7 @@
 
 -->
 <?php
-  require_once('config.php');
+  require_once('../config.php');
 
   session_start();
   $advisorID = $_SESSION['active_user'];
@@ -35,7 +35,7 @@
     <div style="margin-top: 20px" class="container">
         <h1>Input Student Classes</h1>
         <!-- styling of the form for bootstrap https://getbootstrap.com/docs/4.5/components/forms/ -->
-        <form action="student_input.php" method="post">
+        <form action="input_student_classes.php" method="post">
 
             <div class="form-group">
                 <label for="studentID">Student ID:</label>
@@ -66,6 +66,7 @@
             <div class="form-group">
                 <input class="btn btn-primary" name='Submit' type="submit" value="Submit">
             </div>
+            <a href="advisor_menu.php">Back to Advisor Menu</a></br>
         </form>
 
         <!-- jQuery and JS bundle w/ Popper.js -->
@@ -96,62 +97,62 @@
     }
 
     $squeryClass;
-    if($class1 !== ' '){
+    if($class1 !== ''){
       $queryClass  = "INSERT INTO Classes (Eid, Sid, Cclass)
                   VALUES ('".$advisorID."', '".$sudentID."', '".$class1."');";
       if ($conn->query($queryClass) === TRUE) {
-          echo "Successfully added class 1";
+          echo "Successfully added class 1<br>";
       } else {
           echo "Error: " . $queryUser . "<br>" . $conn->error;
       }
     }
-    if($class2 !== ' '){
+    if($class2 !== ''){
       $queryClass  = "INSERT INTO Classes (Eid, Sid, Cclass)
                   VALUES ('".$advisorID."', '".$sudentID."', '".$class2."');";
       if ($conn->query($queryClass) === TRUE) {
-          echo "Successfully added class 2";
+          echo "Successfully added class 2<br>";
       } else {
           echo "Error: " . $queryUser . "<br>" . $conn->error;
       }
     }
-    if($class3 !== ' '){
+    if($class3 !== ''){
       $queryClass  = "INSERT INTO Classes (Eid, Sid, Cclass)
                   VALUES ('".$advisorID."', '".$sudentID."', '".$class3."');";
       if ($conn->query($queryClass) === TRUE) {
-          echo "Successfully added class 3";
+          echo "Successfully added class 3<br>";
       } else {
           echo "Error: " . $queryUser . "<br>" . $conn->error;
       }
     }
-    if($class4 !== ' '){
+    if($class4 !== ''){
       $queryClass  = "INSERT INTO Classes (Eid, Sid, Cclass)
                   VALUES ('".$advisorID."', '".$sudentID."', '".$class4."');";
       if ($conn->query($queryClass) === TRUE) {
-          echo "Successfully added class 4";
+          echo "Successfully added class 4<br>";
       } else {
           echo "Error: " . $queryUser . "<br>" . $conn->error;
       }
     }
-    if($class5 !== ' '){
+    if($class5 !== ''){
       $queryClass  = "INSERT INTO Classes (Eid, Sid, Cclass)
                   VALUES ('".$advisorID."', '".$sudentID."', '".$class5."');";
       if ($conn->query($queryClass) === TRUE) {
-          echo "Successfully added class 5";
+          echo "Successfully added class 5<br>";
       } else {
           echo "Error: " . $queryUser . "<br>" . $conn->error;
       }
     }
-    if($class6 !== ' '){
+    if($class6 !== ''){
       $queryClass  = "INSERT INTO Classes (Eid, Sid, Cclass)
                   VALUES ('".$advisorID."', '".$sudentID."', '".$class6."');";
       if ($conn->query($queryClass) === TRUE) {
-          echo "Successfully added class 6";
+          echo "Successfully added class 6<br>";
       } else {
           echo "Error: " . $queryUser . "<br>" . $conn->error;
       }
     }
     // If you want to redirect without seeing messages printed, uncomment the following line:
-    //header("Location: index.php");
+    header("Location: advisor_menu.php");
 }
 ?>
 
