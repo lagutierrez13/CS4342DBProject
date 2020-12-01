@@ -16,9 +16,9 @@ session_start();
 require_once('../config.php');
 require_once('../validate_session.php');
 
-if (isset($_POST['Eid'])) {
+if (isset($_POST['Sid'])) {
 
-    $eid = isset($_POST['Eid']) ? $_POST['Eid'] : " ";
+    $sid = isset($_POST['Sid']) ? $_POST['sid'] : " ";
     $name = isset($_POST['Ename']) ? $_POST['Ename'] : " ";
     $email = isset($_POST['Eemail']) ? $_POST['Eemail'] : " ";
 

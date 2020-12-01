@@ -176,7 +176,7 @@
           }
         }
       }
-      
+
       if ($fri !== ' ') {
         foreach ($fri as $friday) {
           $queryDate  = "INSERT INTO Student_Availability (Sid, SAvailability)

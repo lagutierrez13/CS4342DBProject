@@ -42,7 +42,7 @@ else {
         <table class="table" width=50%>
             <thead>
                 <td> Student ID</td>
-                <td> Date</td>
+                <td> Email</td>
             </thead>
             <tbody>
                 <?php
@@ -51,7 +51,7 @@ else {
                     <tr>
                         <td><?php printf("%s", $row[0]); ?></td>
                         <td><?php printf("%s", $row[1]); ?></td>
-                        <td><a href="create_advising_session.php?Eid=<?php echo $row[0] ?>">Create Session</a></td>
+                        <td><a href="create_advising_session.php?Sid=<?php echo $row[0] ?>">Create Session</a></td>
                     </tr>
                 <?php
                 }

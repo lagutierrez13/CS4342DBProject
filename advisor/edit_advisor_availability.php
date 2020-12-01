@@ -45,7 +45,7 @@ if ($resultSql->num_rows > 0) {
     <h1>Set availability</h1>
     <!-- styling of the form for bootstrap https://getbootstrap.com/docs/4.5/components/forms/ -->
     <form action="edit_advisor_availability.php" method="post">
-      <label>Select the <strong>timeslots</strong> you are <strong>available</strong></label>
+    <label>Select the <strong>timeslots</strong> you are <strong>available</strong></label>
       <div class="form-group row">
         <div class="col-md-4">
           <input type="checkbox" id="monday" name="monday[]" value="2020-11-30 10:30:00">
@@ -56,12 +56,30 @@ if ($resultSql->num_rows > 0) {
           <label for="mon3">Mon - 2:30am to 3:00pm</label>
         </div>
         <div class="col-md-4">
+          <input type="checkbox" id="tuesday" name="tuesday[]" value="2020-11-30 10:30:00">
+          <label for="mon1">Tue - 10:30am to 11:00pm</label><br>
+          <input type="checkbox" id="tuesday" name="tuesday[]" value="2020-11-30 12:30:00">
+          <label for="mon2">Tue - 12:30am to 1:00pm</label><br>
+          <input type="checkbox" id="tuesday" name="tuesday[]" value="2020-11-30 2:30:00">
+          <label for="mon3">Tue - 2:30am to 3:00pm</label>
+        </div>
+        <div class="col-md-4">
           <input type="checkbox" id="wednesday" name="wednesday[]" value="2020-12-2 10:30:00">
           <label for="wed1">Wed - 10:30am to 11:00pm</label><br>
           <input type="checkbox" id="wednesday" name="wednesday[]" value="2020-12-2 12:30:00">
           <label for="wed2">Wed - 12:30am to 1:00pm</label><br>
           <input type="checkbox" id="wednesday" name="wednesday[]" value="2020-12-2 2:30:00">
           <label for="wed3">Wed - 2:30am to 3:00pm</label>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-md-4">
+          <input type="checkbox" id="thursday" name="thursday[]" value="2020-12-2 10:30:00">
+          <label for="wed1">Thr - 10:30am to 11:00pm</label><br>
+          <input type="checkbox" id="thursday" name="thursday[]" value="2020-12-2 12:30:00">
+          <label for="wed2">Thr - 12:30am to 1:00pm</label><br>
+          <input type="checkbox" id="thursday" name="thursday[]" value="2020-12-2 2:30:00">
+          <label for="wed3">Thr - 2:30am to 3:00pm</label>
         </div>
         <div class="col-md-4">
           <input type="checkbox" id="friday" name="friday[]" value="2020-12-4 10:30:00">
@@ -92,15 +110,27 @@ if ($resultSql->num_rows > 0) {
        */
 
       $mon = isset($_POST['monday']) ? $_POST['monday'] : " ";
+      $tue = isset($_POST['tuesday']) ? $_POST['tuesday'] : " ";
       $wed = isset($_POST['wednesday']) ? $_POST['wednesday'] : " ";
+      $thr = isset($_POST['thursday']) ? $_POST['thursday'] : " ";
       $fri = isset($_POST['friday']) ? $_POST['friday'] : " ";
 
       //Insert into Student table;
       $squeryDate;
       if ($mon !== ' ') {
         foreach ($mon as $monday) {
-          $queryDate  = "INSERT INTO Advisor_Availability (Eid, AAvailability)
-                    VALUES ('" . $advisorID . "', '" . $monday . "');";
+          $queryDate  = "INSERT INTO Student_Availability (Sid, SAvailability)
+                    VALUES ('" . $id . "', '" . $monday . "');";
+          if ($conn->query($queryDate) === TRUE) {
+          } else {
+            echo "Error: " . $queryUser . "<br>" . $conn->error;
+          }
+        }
+      }
+      if ($tue !== ' ') {
+        foreach ($tue as $tuesday) {
+          $queryDate  = "INSERT INTO Student_Availability (Sid, SAvailability)
+                    VALUES ('" . $id . "', '" . $tuesday . "');";
           if ($conn->query($queryDate) === TRUE) {
           } else {
             echo "Error: " . $queryUser . "<br>" . $conn->error;
@@ -109,18 +139,29 @@ if ($resultSql->num_rows > 0) {
       }
       if ($wed !== ' ') {
         foreach ($wed as $wednesday) {
-          $queryDate  = "INSERT INTO Advisor_Availability (Eid, AAvailability)
-                    VALUES ('" . $advisorID . "', '" . $wednesday . "');";
+          $queryDate  = "INSERT INTO Student_Availability (Sid, SAvailability)
+                    VALUES ('" . $id . "', '" . $wednesday . "');";
           if ($conn->query($queryDate) === TRUE) {
           } else {
             echo "Error: " . $queryUser . "<br>" . $conn->error;
           }
         }
       }
+      if ($thr !== ' ') {
+        foreach ($thr as $thursday) {
+          $queryDate  = "INSERT INTO Student_Availability (Sid, SAvailability)
+                    VALUES ('" . $id . "', '" . $thursday . "');";
+          if ($conn->query($queryDate) === TRUE) {
+          } else {
+            echo "Error: " . $queryUser . "<br>" . $conn->error;
+          }
+        }
+      }
+
       if ($fri !== ' ') {
         foreach ($fri as $friday) {
-          $queryDate  = "INSERT INTO Advisor_Availability (Eid, AAvailability)
-                    VALUES ('" . $advisorID . "', '" . $friday . "');";
+          $queryDate  = "INSERT INTO Student_Availability (Sid, SAvailability)
+                    VALUES ('" . $id . "', '" . $friday . "');";
           if ($conn->query($queryDate) === TRUE) {
           } else {
             echo "Error: " . $queryUser . "<br>" . $conn->error;
