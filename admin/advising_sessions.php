@@ -3,7 +3,7 @@
  * CS 4342 Database Management
  * @author Instruction team Spring and Fall 2020 with contribution from L. Garnica
  * @version 2.0
- * Description: The purpose of these file is to provide PhP basic elements for an interface to access a DB. 
+ * Description: The purpose of these file is to provide PhP basic elements for an interface to access a DB.
  * Resources: https://getbootstrap.com/docs/4.5/components/alerts/  -- bootstrap examples
  *
  * This file retrieves and displays the records of the table Student.
@@ -36,22 +36,26 @@ else {
 
 <body>
     <h2>Pending Advising Sessions</h2>
-    <?php $sql = "SELECT * FROM student WHERE SidAdvised = 0 AND Eid = $eid";
+
+    <?php
+    $currentDate = date("Y-m-d h:i:s");
+    $sql = "SELECT * FROM Advising_Session WHERE Eid = $eid AND Adate>'$currentDate'";
     if ($result = $conn->query($sql)) {
     ?>
         <table class="table" width=50%>
             <thead>
                 <td> Student ID</td>
-                <td> Email</td>
+                <td> Date</td>
             </thead>
             <tbody>
                 <?php
                 while ($row = $result->fetch_row()) {
                 ?>
                     <tr>
-                        <td><?php printf("%s", $row[0]); ?></td>
                         <td><?php printf("%s", $row[1]); ?></td>
-                        <td><a href="create_advising_session.php?Sid=<?php echo $row[0] ?>">Create Session</a></td>
+                        <td><?php printf("%s", $row[3]); ?></td>
+                        <td><a href="create_advising_session.php?Eid=<?php echo $row[0] ?>">Create Session</a></td>
+                        <td><a href="delete_advising_session.php?date=<?php echo $row[3] ?>">Delete Session</a></td>
                     </tr>
                 <?php
                 }
@@ -62,7 +66,7 @@ else {
     }
     ?>
     <h2>Completed Advising Sessions</h2>
-    <?php $sql = "SELECT * FROM student WHERE SidAdvised = 0 AND Eid = $eid";
+    <?php $sql = "SELECT * FROM Advising_Session WHERE Eid = $eid AND Adate<'$currentDate'";
     if ($result = $conn->query($sql)) {
     ?>
         <table class="table" width=50%>
@@ -75,8 +79,10 @@ else {
                 while ($row = $result->fetch_row()) {
                 ?>
                     <tr>
-                        <td><?php printf("%s", $row[0]); ?></td>
                         <td><?php printf("%s", $row[1]); ?></td>
+                        <td><?php printf("%s", $row[3]); ?></td>
+                        <td></td>
+                        <td></td>
                     </tr>
                 <?php
                 }
