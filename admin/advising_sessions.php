@@ -17,8 +17,7 @@ require_once('../validate_session.php');
 
 if (isset($_GET['Eid'])) {
     $eid = $_GET['Eid'];
-}
-else {
+} else {
     echo "No advisor id received on request at update_advisor get";
     die();
 }
