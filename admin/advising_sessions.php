@@ -52,8 +52,7 @@ if (isset($_GET['Eid'])) {
                 ?>
                     <tr>
                         <td><?php printf("%s", $row[1]); ?></td>
-                        <td><?php printf("%s", $row[3]); ?></td>
-                        <td><a href="create_advising_session.php?Eid=<?php echo $row[0] ?>">Create Session</a></td>
+                        <td><?php printf("%s", $row[3]); ?></td>                        
                         <td><a href="delete_advising_session.php?date=<?php echo $row[3] ?>">Delete Session</a></td>
                     </tr>
                 <?php

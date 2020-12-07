@@ -3,7 +3,7 @@
  * CS 4342 Database Management
  * @author Instruction team Spring and Fall 2020 with contribution from L. Garnica
  * @version 2.0
- * Description: The purpose of these file is to provide PhP basic elements for an interface to access a DB. 
+ * Description: The purpose of these file is to provide PhP basic elements for an interface to access a DB.
  * Resources: https://getbootstrap.com/docs/4.5/components/alerts/  -- bootstrap examples
  * Include your name here - ex. Modified by Villanueva for Assignment 2
  */
@@ -45,7 +45,7 @@
       </div>
       <div class="row">
         <div class="col-lg-6 col-md-3 col-sm-6 col-xs-12" align="right">
-          <a href="student_input.php"><button class="btn btn-warning btn-lg">Student Form</button></a><br><br>
+          <a href="student/student_menu.php"><button class="btn btn-warning btn-lg">Student Menu</button></a><br><br>
         </div>
       </div>
     </div>
