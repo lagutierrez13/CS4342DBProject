@@ -34,7 +34,7 @@ $advisorID = $_SESSION['active_user'];
 
 <body>
     <h2>Advising Sessions</h2>
-    <?php $sql = "SELECT * FROM advising_session INNER JOIN advisor ON advising_session.eid = $advisorID";
+    <?php $sql = "SELECT * FROM advising_session WHERE Eid = $advisorID";
     if ($result = $conn->query($sql)) {
     ?>
         <table class="table" width=50%>
@@ -47,7 +47,7 @@ $advisorID = $_SESSION['active_user'];
                 while ($row = $result->fetch_row()) {
                 ?>
                     <tr>
-                        <td><?php printf("%s", $row[0]); ?></td>
+                        <td><?php printf("%s", $row[1]); ?></td>
                         <td><?php printf("%s", $row[3]); ?></td>
                         <td><a href="add_session_comments.php?Eid=<?php echo $row[0] ?>">Leave Comment</a></td>
                         <td><a href="input_student_classes.php?Eid=<?php echo $row[0] ?>">Open Advising Form</a></td>

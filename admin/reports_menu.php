@@ -111,7 +111,7 @@ require_once('../validate_session.php');
     ?>
 
 <h2>Required Documents </h2>
-    <?php $sql = "SELECT * FROM student_required_documents WHERE SidAdvised = 0";
+    <?php $sql = "SELECT * FROM student_required_documents";
     if ($result = $conn->query($sql)) {
     ?>
         <table class="table" width=50%>
